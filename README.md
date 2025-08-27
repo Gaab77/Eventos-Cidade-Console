@@ -16,3 +16,67 @@ O sistema permite **cadastrar usuários, cadastrar eventos, consultar eventos, c
 
 ---
 
+## 📂 Estrutura do Projeto
+src/
+├── Usuario.java
+├── Evento.java
+├── SistemaEventos.java
+└── Main.java
+events.data
+
+---
+
+## 📌 Tecnologias
+- Java 17+ (compatível também com 8+)
+- Console (sem interface gráfica)
+- IDEs sugeridas: Eclipse, IntelliJ, NetBeans ou Replit
+
+---
+
+## ▶️ Como Executar
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seuusuario/sistema-eventos-java.git
+
+📊 Diagrama de Classes
+classDiagram
+    class Usuario {
+        - int id
+        - String nome
+        - String email
+        - String cidade
+        - List<Evento> eventosConfirmados
+        + participarEvento(Evento)
+        + cancelarEvento(Evento)
+    }
+
+    class Evento {
+        - int id
+        - String nome
+        - String endereco
+        - String categoria
+        - LocalDateTime horario
+        - String descricao
+        + isOcorrendoAgora()
+        + isJaPassou()
+        + toDataString()
+        + fromDataString()
+    }
+
+    class SistemaEventos {
+        - List<Usuario> usuarios
+        - List<Evento> eventos
+        + cadastrarUsuario(Usuario)
+        + cadastrarEvento(Evento)
+        + listarEventos()
+        + salvarEventosNoArquivo()
+        + carregarEventosDeArquivo()
+    }
+
+    class Main {
+        + main()
+    }
+
+    Usuario "1" --> "*" Evento : participa
+    SistemaEventos "1" --> "*" Evento
+    SistemaEventos "1" --> "*" Usuario
